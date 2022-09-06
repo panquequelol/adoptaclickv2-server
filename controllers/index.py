@@ -56,3 +56,9 @@ def update_pet(db: Session, updated_pet: PetUpdate):
         {Pet.name: updated_pet.name, Pet.price: updated_pet.price, Pet.animal_type: updated_pet.animal_type, Pet.description: updated_pet.description})
     db.commit()
     return res
+
+
+def delete_pet(db: Session, pet_id: int):
+    pet_deleted = db.query(Pet).filter(Pet.id == pet_id).delete()
+    db.commit()
+    return pet_deleted
