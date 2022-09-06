@@ -1,11 +1,6 @@
-from pydantic import BaseModel
-from fastapi import FastAPI, Body, Depends, HTTPException
-from uuid import uuid4, UUID
-from config.database import SessionLocal, engine
+from fastapi import FastAPI
+from config.database import engine
 from models.index import Base
-from schemas.index import UserCreate, UserUpdate, User, PetCreate
-from controllers.index import get_user, get_user_by_email, create_user, delete_user, update_user, create_pet, get_pets_by_owner
-from sqlalchemy.orm import Session
 
 from routes import user, pet
 
