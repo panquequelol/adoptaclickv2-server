@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
 from models.index import User, Pet
-from schemas.index import UserCreate, UserUpdate, PetCreate
+from schemas.index import UserCreate, UserUpdate, PetCreate, PetUpdate
 
 
 def get_user(db: Session, user_id: int):
@@ -49,3 +49,10 @@ def get_pets(db: Session, skip: int = 0, limit: int = 100):
 
 def get_pets_by_owner(db: Session, owner_id: int, skip: int = 0, limit: int = 100):
     return db.query(Pet).filter(Pet.owner_id == owner_id).offset(skip).limit(limit).all()
+
+
+def update_pet(db: Session, updated_pet: PetUpdate):
+    res = db.query(Pet).filter(Pet.id == updated_pet.id).update(
+        {Pet.name: updated_pet.name, Pet.price: updated_pet.price, Pet.animal_type: updated_pet.animal_type, Pet.description: updated_pet.description})
+    db.commit()
+    return res

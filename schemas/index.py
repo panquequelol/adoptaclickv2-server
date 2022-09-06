@@ -12,6 +12,10 @@ class PetCreate(PetBase):
     pass
 
 
+class PetUpdate(PetBase):
+    id: int
+
+
 class Pet(PetBase):
     id: int
     owner_id: int

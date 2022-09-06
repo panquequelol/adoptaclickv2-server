@@ -22,6 +22,6 @@ class Pet(Base):
     price = Column(Float)
     animal_type = Column(String(255))
     description = Column(Text)
-    is_active = Column(Boolean)
+    is_active = Column(Boolean, default=True)
     owner_id = Column(Integer, ForeignKey('users.id'))
     owner = relationship('User', back_populates='pets')
